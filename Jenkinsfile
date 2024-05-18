@@ -2,25 +2,15 @@ pipeline {
     agent any
 
     stages {
-        stage('Clone Repository') {
+        stage('Clone Jenkins-Bash-Pipeline') {
             steps {
-                script {
-                    if (fileExists('Jenkins-Bash-Pipeline')) {
-                        bat 'rm -rf Jenkins-Bash-Pipeline'
-                    }
-                    
-                    git 'https://github.com/nadaahmed2001/Jenkins-Bash-Pipeline.git'
-                }
+                bat 'git clone https://github.com/nadaahmed2001/Jenkins-Bash-Pipeline.git'
             }
         }
 
-        stage('Execute Script') {
+        stage('Execute labTask5.bat from Jenkins-Bash-Pipeline') {
             steps {
-                script {
-                    dir('Jenkins-Bash-Pipeline') {
-                        bat 'labTask5.bat'
-                    }
-                }
+                bat 'call Jenkins-Bash-Pipeline\\labTask5.bat'
             }
         }
     }
